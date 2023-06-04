@@ -1,0 +1,28 @@
+.DS_Store
+node_modules
+node_modules/
+dist
+lib
+
+# local env files
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea
+.vscode
+.gitee
+.git
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+# vuepress temp file
+.temp
+package-lock.json

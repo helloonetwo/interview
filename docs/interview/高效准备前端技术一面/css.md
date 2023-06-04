@@ -161,7 +161,7 @@ export const useRem = () => {
         }
 ```
 
-Bfc 的理解与应用 
+## Bfc 的理解与应用 
 > BFC（Block Formatting Context）中文译为"块级格式化上下文"，简单来说，BFC就是给盒子加一个属性，让盒子变成一块独立渲染的区域，可以理解为一个箱子，箱子里面物品的摆放是不受外界的影响的，其中外边距（margin）也是BFC区域的一部分。
 
 

@@ -39,7 +39,7 @@ module.exports = {
         {
           title: '高效准备前端技术一面',
           collapsable: false,
-          children: ['高效准备前端技术一面/html'],
+          children: ['高效准备前端技术一面/html', '高效准备前端技术一面/css'],
         },
       ],
       '/guide/': [

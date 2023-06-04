@@ -1,6 +1,6 @@
 module.exports = {
   title: '面试文档',
-  base: '/docs/',
+  base: '/interview/',
   description: '面试学习',
   markdown: {
     // markdown-it-anchor 的选项

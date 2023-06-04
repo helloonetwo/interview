@@ -26,3 +26,4 @@ yarn-error.log*
 # vuepress temp file
 .temp
 package-lock.json
+yarn.lock

@@ -226,3 +226,97 @@ function b(foo) {
 
 b(a.foo)
 ```
+
+## 手写深拷贝
+
+- obj 是 null ，或者不是对象和数组，直接返回
+- 判断obj 是数据或者现象  初始值
+- 遍历数组 递归赋值
+- 返回结果值
+```js
+/**
+ * 深拷贝
+ */
+
+const obj1 = {
+  age: 20,
+  name: 'xxx',
+  address: {
+    city: 'beijing',
+  },
+  arr: ['a', 'b', 'c'],
+}
+
+const obj2 = deepClone(obj1)
+obj2.address.city = 'shanghai'
+obj2.arr[0] = 'a1'
+console.log(obj1.address.city)
+console.log(obj1.arr[0])
+// beijing
+// a
+
+
+/**
+ * 深拷贝
+ * @param {Object} obj 要拷贝的对象
+ */
+function deepClone(obj = {}) {
+  if (typeof obj !== 'object' || obj == null) {
+    // obj 是 null ，或者不是对象和数组，直接返回
+    return obj
+  }
+
+  // 初始化返回结果
+  let result
+  if (obj instanceof Array) {
+    result = []
+  } else {
+    result = {}
+  }
+
+  for (let key in obj) {
+    // 保证 key 不是原型的属性
+    if (obj.hasOwnProperty(key)) {
+      // 递归调用！！！
+      result[key] = deepClone(obj[key])
+    }
+  }
+
+  // 返回结果
+  return result
+}
+
+```
+## 浅拷贝
+首先可以通过 Object.assign 来解决这个问题，这个函数会拷贝所有的属性值到新的对象中。如果属性值是对象的话，拷贝的是地址。
+```js
+let a = {
+  age: 1
+}
+let b = Object.assign({}, a)
+a.age = 2
+console.log(b.age) // 1
+```
+另外我们还可以通过展开运算符 ... 来实现浅拷贝：
+```js
+let a = {
+  age: 1
+}
+let b = { ...a }
+a.age = 2
+console.log(b.age) // 1
+```
+## 类型转换
+首先我们要知道，在 JS 中类型转换只有三种情况，分别是：
+
+- 转换为布尔值
+- 转换为数字
+- 转换为字符串
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2f95e584fb4f49968527a982041d3e4e~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp)
+
+```js
+1 + '1' // '11'
+true + true // 2
+4 + [1,2,3] // "41,2,3"
+```
+

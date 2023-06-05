@@ -1,0 +1,228 @@
+# js 基础知识
+
+## 类型
+JS 数据类型分为两大类：
+
+- 原始类型
+- 对象类型
+### 原始（Primitive）类型
+在 JS 中，存在着 7 种原始值，分别是：
+```js
+boolean
+null
+undefined
+number
+string
+symbol
+bigint
+```
+
+### 对象（Object）类型
+对象类型和原始类型不同的是，原始类型存储的是值，一般存储在栈上，对象类型存储的是地址（指针），数据存储在堆上
+
+当创建了一个对象类型的时候，计算机会在堆内存中帮我们开辟一个空间来存放值，但是我们需要找到这个空间，这个空间会拥有一个地址（指针）。
+```js
+function test(person) {
+  person.age = 26
+  person = {
+    name: 'yyy',
+    age: 30
+  }
+
+  return person
+}
+const p1 = {
+  name: 'yck',
+  age: 25
+}
+const p2 = test(p1)
+console.log(p1) // -> ?
+console.log(p2) // -> ?
+```
+对于以上代码，你是否能正确的写出结果呢？
+![RUNOOB 图标](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6ac4cf669d3a4d759a45e7b0bca3e94e~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp)
+
+首先，函数传参是传递对象指针的副本
+到函数内部修改参数的属性这步，我相信大家都知道，当前 p1 的值也被修改了，也就是说 age 从 25 变成了 26
+但是当我们重新为 person 分配了一个对象时就出现了分歧，请看下图
+
+
+所以最后 person 拥有了一个新的地址（指针），也就和 p1 没有任何关系了，导致了最终两个变量的值是不相同的。
+
+## 值类型vs引用类型
+
+### 值类型 保存在栈中 保存与复制的是值本身
+
+```js
+let a = 100; let b= a; a=200; 
+console.log(b)  --> 100
+```
+
+### 引用类型 保存在堆中 保存与复制的是指向对象的一个指针
+引用数据改变 原来的数据改变
+![](https://img2022.cnblogs.com/blog/319373/202202/319373-20220209104129039-185899167.jpg)
+
+```js
+var a = {name:"percy"};
+var b;
+b = a;
+a.name = "zyj";
+console.log(b.name);    // zyj
+b.age = 22;
+console.log(a.age);     // 22
+var c = {
+  name: "zyj",
+  age: 22
+};
+```
+## 类型判断
+类型判断有多种方式。
+
+### typeof
+typeof 对于原始类型来说，除了 null 都可以显示正确的类型，如果你想判断 null 的话可以使用 variable === null。
+```js
+typeof 1 // 'number'
+typeof '1' // 'string'
+typeof undefined // 'undefined'
+typeof true // 'boolean'
+typeof Symbol() // 'symbol'
+typeof 1n // bigint
+```
+typeof 对于对象来说，除了函数都会显示 object，所以说 typeof 并不能准确判断变量到底是什么类型。
+```js
+typeof [] // 'object'
+typeof {} // 'object'
+typeof console.log // 'function'
+```
+
+### instanceof
+instanceof 通过原型链的方式来判断是否为构建函数的实例，常用于判断具体的对象类型。
+```js
+const Person = function() {}
+const p1 = new Person()
+p1 instanceof Person // true
+
+var str = 'hello world'
+str instanceof String // false
+
+var str1 = new String('hello world')
+str1 instanceof String // true
+```
+对于原始类型来说，你想直接通过 instanceof 来判断类型是不行的，但是我们还是有办法实现的。
+```js
+class PrimitiveString {
+  static [Symbol.hasInstance](x) {
+    return typeof x === 'string'
+  }
+}
+console.log('hello world' instanceof PrimitiveString) // true
+你可能不知道 Symbol.hasInstance 是什么东西，其实就是一个能让我们自定义 instanceof 行为的东西，以上代码等同于 typeof 'hello world' === 'string'，所以结果自然是 true 了。
+```
+这其实也侧面反映了一个问题：instanceof 并不是百分之百可信的。
+
+另外其实我们还可以直接通过构建函数来判断类型：
+```js
+// true
+[].constructor === Array
+
+```
+### Object.prototype.toString.call
+
+前几种方式或多或少都存在一些缺陷，Object.prototype.toString.call 综合来看是最佳选择，能判断的类型最完整，基本上是开源库选择最多的方式。
+
+```js
+Object.prototype.toString.call(obj) === `[object ${type}]`;
+```
+
+### isXXX API
+同时还存在一些判断特定类型的 API，选了两个常见的：
+```js
+Array.isArray()
+```
+
+## this
+this 是很多人会混淆的概念，但是其实它一点都不难，只是网上很多文章把简单的东西说复杂了。在这一小节中，你一定会彻底明白 this 这个概念的。
+
+我们先来看几个函数调用的场景
+```js
+function foo() {
+  console.log(this.a)
+}
+var a = 1
+foo()
+
+const obj = {
+  a: 2,
+  foo
+}
+obj.foo()
+
+const c = new foo()
+```
+接下来我们一个个分析上面几个场景：
+
+对于直接调用 foo 来说，不管 foo 函数被放在了什么地方，this 一定是 window
+对于 obj.foo() 来说，我们只需要记住，谁调用了函数，谁就是 this，所以在这个场景下 foo 函数中的 this 就是 obj 对象
+对于 new 的方式来说，this 被永远绑定在了 c 上面，不会被任何方式改变 this
+以上三种规则基本覆盖大部分情况了，很多代码中的 this 应该都能理解指向，下面让我们看看箭头函数中的 this：
+```js
+function a() {
+  return () => {
+    return () => {
+      console.log(this)
+    }
+  }
+}
+console.log(a()()())
+```
+首先箭头函数其实是没有 this 的，箭头函数中的 this 只取决包裹箭头函数的第一个普通函数的 this。在这个例子中，因为包裹箭头函数的第一个普通函数是 a，所以此时的 this 是 window。另外对箭头函数使用 bind 这类函数是无效的。
+
+最后种情况也就是 bind 这些改变上下文的 API 了，对于这些函数来说，this 取决于第一个参数，如果第一个参数为空，那么就是 window。
+
+那么说到 bind，不知道大家是否考虑过，如果对一个函数进行多次 bind，那么上下文会是什么呢？
+```js
+let a = {}
+let fn = function () { console.log(this) }
+fn.bind().bind(a)() // => ?
+```
+如果你认为输出结果是 a，那么你就错了，其实我们可以把上述代码转换成另一种形式：
+```js
+// fn.bind().bind(a) 等于
+let fn2 = function fn1() {
+  return function() {
+    return fn.apply()
+  }.apply(a)
+}
+fn2()
+```
+可以从上述代码中发现，不管我们给函数 bind 几次，fn 中的 this 永远由第一次 bind 决定，所以结果永远是 window。
+```js
+let a = { name: 'cxk' }
+function foo() {
+  console.log(this.name)
+}
+foo.bind(a)() // => 'cxk'
+```
+以上就是 this 的所有规则了。实际中可能会发生多个规则同时出现的情况，这时候不同的规则之间会根据优先级最高的来决定 this 最终指向哪里。
+
+首先，new 的方式优先级最高，接下来是 bind 这些函数，然后是 obj.foo() 这种调用方式，最后是 foo 这种调用方式，同时，箭头函数的 this 一旦被绑定，就不会再被任何方式所改变。
+
+如果你还是觉得有点绕，那么就看以下的这张流程图吧，图中的流程只针对于单个规则。
+![RUNOOB 图标](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f0d9e65d315749a48e256d791a710097~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp)
+
+
+### 常见面试题
+这里一般都是考 this 的指向问题，牢记上述的几个规则就够用了，比如下面这道题：
+```js
+const a = {
+  b: 2,
+  foo: function () { console.log(this.b) }
+}
+
+function b(foo) {
+  // 输出什么？
+  foo()
+}
+
+b(a.foo)
+```

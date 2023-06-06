@@ -320,22 +320,184 @@ true + true // 2
 4 + [1,2,3] // "41,2,3"
 ```
 
-## JS中的事件冒泡、事件捕获、事件委托
 
-#### 事件冒泡（dubbed bubbling）：当一个元素接收到事件的时候，会把他接收到的事件传给自己的父级，一直到 window （注意这里传递的仅仅是事件，例如click、focus等等这些事件， 并不传递所绑定的事件函数。）
-事件源 =>根节点（由内到外）进行事件传播。
 
-#### 事件捕获（event capturing）： 当鼠标点击或者触发dom事件时（被触发dom事件的这个元素被叫作事件源），浏览器会从根节点 =>事件源（由外到内）进行事件传播。
+## 闭包
+> 假如一个函数能访问外部的变量，那么就形成了一个闭包，而不是一定要返回一个函数。
 
-事件捕获与事件冒泡是比较类似的，最大的不同在于事件传播的方向。
+```js
+let a = 1
+// 产生闭包
+function fn() {
+  console.log(a);
+}
 
-#### 事件委托也称为事件代理。就是利用事件冒泡，把子元素的事件都绑定到父元素上。如果子元素阻止了事件冒泡，那么委托就无法实现。
+function fn1() {
+  let a = 1
+  // 产生闭包
+  return () => {
+    console.log(a);
+  }
+}
+const fn2 = fn1()
+fn2()
+```
 
-如果循环给每个按钮添加点击事件，那么会增加内存损耗，影响性能 
-![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/913f4518334f4525b003d61d8c410dd5~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?)
-此时可以给button的父元素添加点击事件 
-![](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d69430357f5d4101a7d423d42f723d22~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?)
+**所有的自由变量的查找，是在函数定义的地方，向上级作用域查找，不是在执行的地方！！！**
 
-原理实现：
+-  函数作为返回值
+```JS
+function create() {
+    const a = 100
+    return function () {
+        console.log(a)
+    }
+}
 
-不是每个子节点单独设置事件监听器，而是事件监听器设置在其父节点上，然后利用冒泡原理影响设置每个子节点。
+const fn = create()
+const a = 200
+fn() // 100
+```
+- 函数作为参数被传递
+
+```js
+function print(fn) {
+    const a = 200
+    fn()
+}
+const a = 100
+function fn() {
+    console.log(a)
+}
+print(fn) // 100
+```
+
+### 闭包现实的使用场景
+- 封装函数 提供api
+```js
+// 闭包隐藏数据，只提供 API
+function createCache() {
+  const data = {} // 闭包中的数据，被隐藏，不被外界访问
+  return {
+    set: function (key, val) {
+      data[key] = val
+    },
+    get: function (key) {
+      return data[key]
+    },
+  }
+}
+
+const c = createCache()
+c.set('a', 100)
+console.log(c.get('a'))
+
+```
+- 作用域
+
+```js
+let a
+for (let i = 0; i < 10; i++) {
+  a = document.createElement('a')
+  a.innerHTML = i + '<br>'
+  a.addEventListener('click', function (e) {
+    e.preventDefault()
+    alert(i)
+  })
+  document.body.appendChild(a)
+}
+
+
+let a,i;
+for (i = 0; i < 10; i++) {
+  a = document.createElement('a')
+  a.innerHTML = i + '<br>'
+  a.addEventListener('click', function (e) {
+    e.preventDefault()
+    alert(i)
+  })
+  document.body.appendChild(a)
+}
+```
+
+
+## 模拟 bind
+-  将参数拆解为数组
+-  获取 this（数组第一项）
+-  改变this 的指向 返回一个函数
+```js
+// 模拟 bind
+Function.prototype.bind1 = function () {
+    // 将参数拆解为数组
+    const args = Array.prototype.slice.call(arguments)
+
+    // 获取 this（数组第一项）
+    const t = args.shift()
+
+    // fn1.bind(...) 中的 fn1
+    const self = this
+
+    // 返回一个函数
+    return function () {
+        return self.apply(t, args)
+    }
+}
+
+function fn1(a, b, c) {
+    console.log('this', this)
+    console.log(a, b, c)
+    return 'this is fn1'
+}
+
+const fn2 = fn1.bind1({x: 100}, 10, 20, 30)
+const res = fn2()
+console.log(res)
+
+```
+
+## 作用域(scope)
+
+JavaScript 中的作用域是一种机制，它决定代码片段对其他部分的可访问性。并且回答了以下问题: 从哪里可以访问？从哪里无法进入？谁可以访问它，谁不能？ 简单来说，作用域就是规定变量与函数可访问范围的一套规则。
+
+### 有哪些作用域
+- 全局作用域
+```js
+window.name
+window.location
+window.top
+```
+- 函数作用域
+```js
+let a = "hello";
+
+function greet() {
+    let b = "World"
+    console.log(a + b);
+}
+
+greet();
+console.log(a + b); // error
+```
+在上面的程序中，变量 a 是全局变量，变量 b 是局部变量。变量 b 只能在函数 hello 中访问。
+- 块级作用域
+
+```js
+function f1() {
+  let n = 5;
+  if (true) {
+    let n = 10;
+  }
+  console.log(n); // 5
+}
+```
+块级作用域由最近的一对包含花括号{} 界定。换句话说， if 块、while 块、function块，单独的块块级作用域。
+
+## 作用域链(scope chain)
+![](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/25b87f964b28413e814b07f045387392~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp?)
+蓝色框是全局作用域，定义了a变量，以及里面的所有函数。
+红色框是first函数的作用域，它定义了变量 b ，以及second函数。
+绿色框是第second的作用域。log语句用于输出变量 a、 b 和 c。
+
+当代码执行道second函数是，打印变量a，b，c，但是变量 a 和 b 没有在second函数中定义，只定义了c。这时就会往上层作用域查找，于是从first函数找到了变量 b = 'Hello'。这时还没用找到a，所有再继续往上层作用域查找，然后找到了a = 'Hey',这样一层一层往上查找的过程，就被成为作用域链。
+当 JS 引擎无法在作用域链中找到变量时，它就会停止执行并抛出错误。
+

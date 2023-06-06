@@ -314,7 +314,7 @@ console.log('script end')
 
 即，只要遇到了 `await` ，后面的代码都相当于放在 callback 里。
 
-## for...of
+### for...of
 
 ```js
 // 定时算乘法

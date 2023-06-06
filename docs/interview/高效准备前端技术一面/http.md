@@ -35,6 +35,7 @@ Last-Modified 表示本地文件最后修改日期，If-Modified-Since 会将 La
 #### ETag 和 If-None-Match
 ETag 类似于文件指纹，If-None-Match 会将当前 ETag 发送给服务器，询问该资源 ETag 是否变动，有变动的话就将新的资源发送回来。并且 ETag 优先级比 Last-Modified 高。
 
+这是一个链接 [](https://juejin.cn/post/6844903838768431118)
 
 ## 常见状态码
 

@@ -1,4 +1,4 @@
-# js 基础知识
+# js-基础知识
 
 ## 类型
 JS 数据类型分为两大类：
@@ -552,14 +552,6 @@ wanglaoshi.teach()
 wanglaoshi.eat()
 
 ```
-
-Student 类 继承 people 类, xialuo是Stundent 类的实例化对象，xiaoluo 通过隐式原型查找到Student的显式原型里面的sayHi()方法
-![](./images/2023-06-06%20144734.png)
-
-Student显式原型的隐式原型找到People 的显式原型的eat 方法 
-![](./images/2023-06-06%20145034.png)
-最上层是对象的显示原型 显示原型里面有隐式原型
-![](./images/2023-06-06%20145414.png)
 
 ### 一、原型
 JavaScript 常被描述为一种基于原型的语言——每个对象拥有一个原型对象

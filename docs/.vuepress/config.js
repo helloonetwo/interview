@@ -1,3 +1,4 @@
+// const nav = require('./nav')
 module.exports = {
   title: '面试文档',
   base: '/interview/',
@@ -25,6 +26,7 @@ module.exports = {
       { text: '首页', link: '/' },
       { text: '数据可视化', link: '/guide/' },
       { text: '面试体系', link: '/interview/' },
+      { text: '2周刷完100道前端优质面试真题', link: '/twoweak/' },
       // { text: '购买课程', link: 'https://coding.imooc.com/class/445.html' },
     ],
     navbar: true,
@@ -46,6 +48,7 @@ module.exports = {
             '高效准备前端技术一面/js-异步进阶',
             '高效准备前端技术一面/http',
             '高效准备前端技术一面/JS-Web-API-Ajax',
+            '高效准备前端技术一面/JS-WEB-API-存储',
             '高效准备前端技术一面/浏览器基础知识点',
           ],
         },

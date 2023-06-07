@@ -2,7 +2,6 @@ module.exports = {
   title: '面试文档',
   base: '/interview/',
   description: '面试学习',
-  plugins: ['@vuepress/nprogress', '@vuepress/last-updated'],
   markdown: {
     // markdown-it-anchor 的选项
     anchor: { permalink: false },
@@ -46,6 +45,7 @@ module.exports = {
             '高效准备前端技术一面/js-基础知识',
             '高效准备前端技术一面/js-异步进阶',
             '高效准备前端技术一面/http',
+            '高效准备前端技术一面/JS-Web-API-Ajax',
             '高效准备前端技术一面/浏览器基础知识点',
           ],
         },

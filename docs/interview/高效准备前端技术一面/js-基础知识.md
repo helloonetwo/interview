@@ -653,3 +653,48 @@ Object.prototype.__proto__ === null
 
 - Function对象的__proto__会指向自己的原型对象，最终还是继承自Object对象
 
+
+## 防抖与节流
+### 定义
+- 防抖: n 秒后在执行该事件，若在 n 秒内被重复触发，则重新计时
+- 节流: n 秒内只运行一次，若在 n 秒内重复触发，只有一次生效
+### 防抖
+![](https://img-blog.csdnimg.cn/67195cb158274e5f876e358657119449.png)
+设计思路：事件触发后开启一个定时器，如果事件在这个定时器限定的时间内再次触发，则清除定时器，在写一个定时器，定时时间到则触发。
+　在防抖函数中，我们使用了闭包来保存定时器变量 timer 和传入的函数 func。每次触发事件时，我们先清除之前的定时器，再设置一个新的定时器。如果在 delay 时间内再次触发事件，就会清除之前的定时器并设置一个新的定时器，直到 delay 时间内不再触发事件，定时器到达时间后执行传入的函数 func。
+```js
+function debounce(fn, delay){
+	let timer = null;
+	return function(){
+		clearTimeout(timer);
+		timer = setTimeout(()=> {
+			fn.apply(this, arguments);
+		}, delay)
+	}
+}
+
+```
+### 节流
+![](https://img-blog.csdnimg.cn/14fcee30f3d74ef4841739a448e5f3ca.png)
+设计思路：我们可以设计一种类似控制阀门一样定期开放的函数，事件触发时让函数执行一次，然后关闭这个阀门，过了一段时间后再将这个阀门打开，再次触发事件。
+    刚开始valid为true，然后将valid重置为false,进入了定时器，在定时器的时间期限之后，才会将valid重置为true,valid为true之后，之后的点击才会生效
+在定时器的时间期限内，valid还没有重置为true，会一直进入return，就实现了在N秒内多次点击只会执行一次的效果
+```js
+function throttle(fn, delay){
+	let valid = true;
+	return function(){
+		if(valid) { //如果阀门已经打开，就继续往下
+			setTimeout(()=> {
+				fn.apply(this, arguments);//定时器结束后执行
+				valid = true;//执行完成后打开阀门
+			}, delay)
+			valid = false;//关闭阀门
+		}
+	}
+}
+```
+
+### 防抖和节流区别：
+防抖是触发高频事件后n秒内函数只会执行一次，如果n秒内高频事件再次被触发，则重新计算时间。适用于可以多次触发但触发只生效最后一次的场景。
+
+节流是高频事件触发，但在n秒内只会执行一次，如果n秒内触发多次函数，只有一次生效，节流会稀释函数的执行频率。

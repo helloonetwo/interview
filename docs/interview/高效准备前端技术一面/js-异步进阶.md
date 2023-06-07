@@ -314,6 +314,60 @@ console.log('script end')
 
 即，只要遇到了 `await` ，后面的代码都相当于放在 callback 里。
 
+
+```js
+async function async1() {
+  console.log('async1 start');
+  await async2();
+  console.log('async1 end');
+}
+async function async2() {
+  console.log('async2');
+}
+ 
+console.log('script start');
+setTimeout(function() {
+  console.log('setTimeout');
+}, 0)
+async1();
+new Promise(function(resolve) {
+  console.log('promise1');
+  resolve();
+}).then(function() {
+  console.log('promise2');
+});
+console.log('script end');
+```
+
+输出结果：
+```
+script start
+async1 start
+async2
+promise1
+script end
+async1 end
+promise2
+setTimeout
+```
+
+步骤分析： [参考](https://blog.csdn.net/RedaTao/article/details/81504532)
+- 首先，事件循环从宏任务（macrostack）队列开始，这个时候，宏任务(整体script、setTimeout、setInterval)队列中，只有一个 script (整体代码)任务 ()。
+- 首先执行 console.log('script start')，输出 ‘script start'
+- 遇到 setTimeout 把 console.log('setTimeout') 放到 macrotask 队列中
+- 执行 aync1() 输出 ‘async1 start' 和 'async2' ,把 console.log('async1 end') 放到 micro 队列中
+- 执行到 promise ，输出 'promise1' ，把 console.log('promise2') 放到  micro 队列中
+- 执行 console.log('script end')，输出 ‘script end'
+- macrotask 执行完成会执行 microtask ，把 microtask quene 里面的 microtask 全部拿出来一次性执行完，所以会输出 'async1 end' 和 ‘promise2'
+开始新一轮的事件循环，去除执行一个 macrotask 执行，所以会输出 ‘setTimeout'
+
+
+涉及知识点：
+Promise 优先于 setTimeout 宏任务，所以 setTimeout 回调会最后执行
+Promise 一旦被定义就会立即执行
+Promise 的 resolve 和 reject  是异步执行的回调。所以 resolve() 会被放到回调队列中，在主函数执行完和 setTimeout 之前调用
+await 执行完后，会让出线程。async 标记的函数会返回一个 Promise 对象
+
 ### for...of
 
 ```js
@@ -428,3 +482,48 @@ setTimeout(() => {
 
 - 微任务：ES 语法标准之内，JS 引擎来统一处理。即，不用浏览器有任何关于，即可一次性处理完，更快更及时。
 - 宏任务：ES 语法没有，JS 引擎不处理，浏览器（或 nodejs）干预处理。
+
+
+## 同步与异步执行顺序
+
+JavaScript将任务分为同步任务和异步任务，同步任务进入主线中中，异步任务首先到Event Table进行回调函数注册。
+当异步任务的触发条件满足，将回调函数从Event Table压入Event Queue中。
+主线程里面的同步任务执行完毕，系统会去Event Queue中读取异步的回调函数。
+只要主线程空了，就会去Event Queue读取回调函数，这个过程被称为Event Loop。
+
+![](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b55d3524a0dc4352a731ccc6321e1e4d~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?)
+
+
+vent Loop执行过程
+了解到宏任务与微任务过后，我们来学习宏任务与微任务的执行顺序。
+
+代码开始执行，创建一个全局调用栈，script作为宏任务执行
+执行过程过同步任务立即执行，异步任务根据异步任务类型分别注册到微任务队列和宏任务队列
+同步任务执行完毕，查看微任务队列
+若存在微任务，将微任务队列全部执行(包括执行微任务过程中产生的新微任务)
+若无微任务，查看宏任务队列，执行第一个宏任务，宏任务执行完毕，查看微任务队列，重复上述操作，直至宏任务队列为空
+
+更新一下Event Loop的执行顺序图：
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c1a476f326234c7693debcc1d483fa41~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?)
+
+
+在上面学习的基础上，重新分析当前案例：
+```js
+setTimeout(() => {
+  console.log(1);
+}, 1000)
+new Promise(function(resolve){
+    console.log(2);
+    for(var i = 0; i < 10000; i++){
+        i == 99 && resolve();
+    }
+}).then(function(){
+    console.log(3)
+});
+console.log(4)
+```
+
+```
+2 4  3 1
+```
+![](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fedf8b829d8b48dbaf1e2366d7a345ad~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?)

@@ -1,4 +1,5 @@
 // const nav = require('./nav')
+const path = require('path')
 module.exports = {
   title: '面试文档',
   base: '/interview/',
@@ -20,6 +21,13 @@ module.exports = {
     ],
     ['meta', { name: 'msapplication-TileColor', content: '#000000' }],
   ],
+  configureWebpack: {
+    resolve: {
+      alias: {
+        '@': path.join(__dirname, 'public', 'assets'),
+      },
+    },
+  },
   themeConfig: {
     lastUpdated: '上次更新',
     nav: [
@@ -128,6 +136,16 @@ module.exports = {
               'vue3/modal_component',
               '用Vue3.0 写过组件吗？如果想实现一个 Modal你会怎么设计？',
             ],
+          ],
+        },
+        {
+          title: '前端框架及面试 vue原理',
+          collapsable: false,
+          children: [
+            'vue原理/vue的虚拟DOM',
+            'vue原理/patch',
+            'vue原理/updataChildren',
+            'vue原理/optimizeUpdataChildren',
           ],
         },
       ],

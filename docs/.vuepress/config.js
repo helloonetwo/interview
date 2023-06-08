@@ -139,13 +139,35 @@ module.exports = {
           ],
         },
         {
-          title: '前端框架及面试 vue原理',
+          title: '前端框架及面试 变化侦测篇',
           collapsable: false,
           children: [
-            'vue原理/vue的虚拟DOM',
-            'vue原理/patch',
-            'vue原理/updataChildren',
-            'vue原理/optimizeUpdataChildren',
+            ['reactive/', '综述'],
+            ['reactive/object', 'Object的变化侦测'],
+            ['reactive/array', 'Array的变化侦测'],
+          ],
+        },
+        {
+          title: '前端框架及面试 虚拟DOM篇',
+          collapsable: false,
+          children: [
+            ['virtualDOM/vue的虚拟DOM', 'Vue中的虚拟DOM'],
+            ['virtualDOM/patch', 'Vue中的DOM-Diff'],
+            ['virtualDOM/updataChildren', '更新子节点'],
+            ['virtualDOM/optimizeUpdataChildren', '优化更新子节点'],
+          ],
+        },
+        {
+          title: '前端框架及面试 模板编译篇',
+          collapsable: false,
+          children: [
+            ['complie/', '综述'],
+            ['complie/parse', '模板解析阶段(整体运行流程)'],
+            ['complie/HTMLParse', '模板解析阶段(HTML解析器)'],
+            ['complie/textParse', '模板解析阶段(文本解析器)'],
+            ['complie/optimize', '优化阶段'],
+            ['complie/codegen', '代码生成阶段'],
+            ['complie/summary', '总结'],
           ],
         },
       ],
@@ -212,4 +234,9 @@ module.exports = {
       ],
     },
   },
+  plugins: [
+    '@vuepress/back-to-top',
+    '@vuepress/active-header-links',
+    '@vuepress/nprogress',
+  ],
 }

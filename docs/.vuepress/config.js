@@ -52,6 +52,16 @@ module.exports = {
           collapsable: false,
           children: ['base/拆分配置', 'base/alias', 'base/查看项目文件体积'],
         },
+        {
+          title: '高级配置',
+          collapsable: false,
+          children: [
+            'senior/多入口',
+            'senior/压缩代码',
+            'senior/抽离公共代码',
+            'senior/webpack中hash、chunkhash、contenthash区别',
+          ],
+        },
       ],
       '/interview/': [
         {

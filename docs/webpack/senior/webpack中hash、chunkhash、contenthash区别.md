@@ -140,9 +140,7 @@ paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
 
 > 使用chunkhash存在一个问题，就是当在一个JS文件中引入CSS文件，编译后它们的hash是相同的，而且只要js文件发生改变 ，关联的css文件hash也会改变,这个时候可以使用mini-css-extract-plugin里的contenthash值，保证即使css文件所处的模块里就算其他文件内容改变，只要css文件内容不变，那么不会重复构建
 
-
-
-
+```js
 const path = require("path");
 const glob = require("glob");
 const PurgecssPlugin = require("purgecss-webpack-plugin");
@@ -198,10 +196,11 @@ loader: MiniCssExtractPlugin.loader,
 },
 plugins: [
 new MiniCssExtractPlugin({
-+ filename: "[name].[contenthash].css"
+filename: "[name].[contenthash].css"
 }),
 new PurgecssPlugin({
 paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
 }),
 ],
 };
+```

@@ -50,7 +50,12 @@ module.exports = {
         {
           title: '基础阶段',
           collapsable: false,
-          children: ['base/拆分配置', 'base/alias', 'base/查看项目文件体积'],
+          children: [
+            'base/拆分配置',
+            'base/处理图片',
+            'base/alias',
+            'base/查看项目文件体积',
+          ],
         },
         {
           title: '高级配置',
@@ -60,6 +65,15 @@ module.exports = {
             'senior/压缩代码',
             'senior/抽离公共代码',
             'senior/webpack中hash、chunkhash、contenthash区别',
+          ],
+        },
+        {
+          title: '性能优化',
+          collapsable: false,
+          children: [
+            'optimization/性能优化-构建速度',
+            'optimization/性能优化-产出代码',
+            'optimization/前端为什么要打包和构建',
           ],
         },
       ],
@@ -246,16 +260,6 @@ module.exports = {
           collapsable: false,
           children: ['report/guide', 'report/qa', 'report/summary'],
         },
-        // {
-        //   title: '数据大屏项目',
-        //   collapsable: false,
-        //   children: ['screen/guide'],
-        // },
-        // {
-        //   title: '移动报表项目',
-        //   collapsable: false,
-        //   children: ['mobile/guide'],
-        // },
       ],
     },
   },

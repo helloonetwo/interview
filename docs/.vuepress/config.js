@@ -33,12 +33,26 @@ module.exports = {
     nav: [
       { text: '首页', link: '/' },
       { text: '数据可视化', link: '/guide/' },
+      { text: '构建工具', link: '/webpack/' },
       { text: '面试体系', link: '/interview/' },
       // { text: '购买课程', link: 'https://coding.imooc.com/class/445.html' },
     ],
     navbar: true,
     sidebar: {
       collapsable: false,
+      '/webpack/': [
+        {
+          title: '指南',
+          collapsable: false,
+          children: [''],
+        },
+
+        {
+          title: '基础阶段',
+          collapsable: false,
+          children: ['base/拆分配置', 'base/alias', 'base/查看项目文件体积'],
+        },
+      ],
       '/interview/': [
         {
           title: '指南',

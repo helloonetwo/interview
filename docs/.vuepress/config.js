@@ -168,6 +168,7 @@ module.exports = {
             ['complie/optimize', '优化阶段'],
             ['complie/codegen', '代码生成阶段'],
             ['complie/summary', '总结'],
+            ['complie/个人总结', '个人总结'],
           ],
         },
       ],

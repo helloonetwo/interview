@@ -18,10 +18,227 @@ PS：注意回顾 “Node 和 Element 和区别”
 
 一般通过递归实现，代码参考 dom-traverse.ts
 
+```ts
+/**
+ * 访问节点
+ * @param n node
+ */
+function visitNode(n: Node) {
+    if (n instanceof Comment) {
+        // 注释
+        console.info('Comment node ---', n.textContent)
+    }
+    if (n instanceof Text) {
+        // 文本
+        const t = n.textContent?.trim()
+        if (t) {
+            console.info('Text node ---', t)
+        }
+    }
+    if (n instanceof HTMLElement) {
+        // element
+        console.info('Element node ---', `<${n.tagName.toLowerCase()}>`)
+    }
+}
+
+/**
+ * 深度优先遍历
+ * @param root dom node
+ */
+function depthFirstTraverse1(root: Node) {
+    visitNode(root)
+
+    const childNodes = root.childNodes // .childNodes 和 .children 不一样
+    if (childNodes.length) {
+        childNodes.forEach(child => {
+            depthFirstTraverse1(child) // 递归
+        })
+    }
+}
+
+/**
+ * 深度优先遍历
+ * @param root dom node
+ */
+ function depthFirstTraverse2(root: Node) {
+     const stack: Node[] = []
+
+     // 根节点压栈
+     stack.push(root)
+
+     while (stack.length > 0) {
+         const curNode = stack.pop() // 出栈
+         if (curNode == null) break
+
+         visitNode(curNode)
+
+         // 子节点压栈
+         const childNodes = curNode.childNodes
+         if (childNodes.length > 0) {
+             // reverse 反顺序压栈
+             Array.from(childNodes).reverse().forEach(child => stack.push(child))
+         }
+     }
+ }
+
+ ```
+
 ## 广度优先
 
 一般通过队列实现，代码参考 dom-traverse.ts
+dom-traverse.ts
+```ts
+/**
+ * 广度优先遍历
+ * @param root dom node
+ */
+function breadthFirstTraverse(root: Node) {
+    const queue: Node[] = [] // 数组 vs 链表
 
+    // 根节点入队列
+    queue.unshift(root)
+
+    while (queue.length > 0) {
+        const curNode = queue.pop()
+        if (curNode == null) break
+
+        visitNode(curNode)
+
+        // 子节点入队
+        const childNodes = curNode.childNodes
+        if (childNodes.length) {
+            childNodes.forEach(child => queue.unshift(child))
+        }
+    }
+}
+
+
+```
+
+### 完整代码
+```html
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>template</title>
+    </head>
+    <body>
+        <p>template</p>
+
+        <div id="box">
+            <p>hello <b>world</b></p>
+            <img src="https://www.baidu.com/img/flexible/logo/pc/result.png" />
+            <!-注释->
+            <ul>
+                <li>a</li>
+                <li>b</li>
+            </ul>
+        </div>
+    </body>
+</html>
+
+```
+dom-traverse.ts
+```ts
+/**
+ * @description 遍历 DOM tree
+ * @author 双越老师
+ */
+
+/**
+ * 访问节点
+ * @param n node
+ */
+function visitNode(n: Node) {
+    if (n instanceof Comment) {
+        // 注释
+        console.info('Comment node ---', n.textContent)
+    }
+    if (n instanceof Text) {
+        // 文本
+        const t = n.textContent?.trim()
+        if (t) {
+            console.info('Text node ---', t)
+        }
+    }
+    if (n instanceof HTMLElement) {
+        // element
+        console.info('Element node ---', `<${n.tagName.toLowerCase()}>`)
+    }
+}
+
+/**
+ * 深度优先遍历
+ * @param root dom node
+ */
+function depthFirstTraverse1(root: Node) {
+    visitNode(root)
+
+    const childNodes = root.childNodes // .childNodes 和 .children 不一样
+    if (childNodes.length) {
+        childNodes.forEach(child => {
+            depthFirstTraverse1(child) // 递归
+        })
+    }
+}
+
+/**
+ * 深度优先遍历
+ * @param root dom node
+ */
+ function depthFirstTraverse2(root: Node) {
+     const stack: Node[] = []
+
+     // 根节点压栈
+     stack.push(root)
+
+     while (stack.length > 0) {
+         const curNode = stack.pop() // 出栈
+         if (curNode == null) break
+
+         visitNode(curNode)
+
+         // 子节点压栈
+         const childNodes = curNode.childNodes
+         if (childNodes.length > 0) {
+             // reverse 反顺序压栈
+             Array.from(childNodes).reverse().forEach(child => stack.push(child))
+         }
+     }
+ }
+
+/**
+ * 广度优先遍历
+ * @param root dom node
+ */
+function breadthFirstTraverse(root: Node) {
+    const queue: Node[] = [] // 数组 vs 链表
+
+    // 根节点入队列
+    queue.unshift(root)
+
+    while (queue.length > 0) {
+        const curNode = queue.pop()
+        if (curNode == null) break
+
+        visitNode(curNode)
+
+        // 子节点入队
+        const childNodes = curNode.childNodes
+        if (childNodes.length) {
+            childNodes.forEach(child => queue.unshift(child))
+        }
+    }
+}
+
+const box = document.getElementById('box')
+if (box == null) throw new Error('box is null')
+depthFirstTraverse2(box)
+
+```
 ## 解答
 
 - 深度优先，递归

@@ -42,11 +42,43 @@ const f = new Foo('双越')
 
 ## 实现 new
 
-代码参考 new.ts
+```ts
+export function customNew<T>(constructor: Function, ...args: any[]): T {
+    // 1. 创建一个空对象，继承 constructor 的原型
+    const obj = Object.create(constructor.prototype);
+    // 2. 将 obj 作为 this ，执行 constructor ，传入参数
+    constructor.apply(obj, args);
+    // 3. 返回 obj
+    return obj;
+}
+
+class Foo {
+    // 属性
+    name: string;
+    city: string;
+    n: number;
+
+    constructor(name: string, n: number) {
+        this.name = name;
+        this.city = "北京";
+        this.n = n;
+    }
+
+    getName() {
+        return this.name;
+    }
+}
+
+const f = new Foo("双越", 100);
+// const f = customNew<Foo>(Foo, '双越', 100)
+console.info(f);
+console.info(f.getName());
+
+```
 
 ## 面试连环问：Object.create 和 {} 的区别
 
 `Object.create` 可以指定原型，创建一个空对象。<br>
 `{}` 就相当于 `Object.create(Object.prototype)` ，即根据 `Object` 原型的空对象。
 
-PS：对 JS 原型和原型链还不了解的需要抓紧恶补。
+

@@ -4,13 +4,13 @@ module.exports = {
   title: '面试文档',
   base: '/interview/',
   description: '面试学习',
-  markdown: {
-    // markdown-it-anchor 的选项
-    anchor: { permalink: false },
-    // markdown-it-toc 的选项
-    toc: { includeLevel: [1, 2, 3] },
-    lineNumbers: true,
-  },
+  // markdown: {
+  //   // markdown-it-anchor 的选项
+  //   anchor: { permalink: false },
+  //   // markdown-it-toc 的选项
+  //   toc: { includeLevel: [1, 2, 3] },
+  //   lineNumbers: true,
+  // },
   head: [
     ['link', { rel: 'icon', href: `logo.jpg` }],
     ['meta', { name: 'theme-color', content: '#1890ff' }],
@@ -40,7 +40,7 @@ module.exports = {
     ],
     navbar: true,
     sidebar: {
-      collapsable: false,
+      collapsable: true,
       '/webpack/': [
         {
           title: '指南',
@@ -82,7 +82,7 @@ module.exports = {
         },
         {
           title: '高效准备前端技术一面',
-          collapsable: false,
+          collapsable: true,
           children: [
             '高效准备前端技术一面/html',
             '高效准备前端技术一面/css',
@@ -98,7 +98,7 @@ module.exports = {
         },
         {
           title: '前端框架及面试 vue篇',
-          collapsable: false,
+          collapsable: true,
           children: [
             ['vue/vue', '说说你对vue的理解?'],
             ['vue/spa', '说说你对SPA（单页应用）的理解?'],
@@ -151,7 +151,7 @@ module.exports = {
         },
         {
           title: '前端框架及面试 vue3篇',
-          collapsable: false,
+          collapsable: true,
           children: [
             ['vue3/goal', 'Vue3.0的设计目标是什么？做了哪些优化?'],
             ['vue3/performance', 'Vue3.0 性能提升主要是通过哪几方面体现的？'],
@@ -175,7 +175,7 @@ module.exports = {
         },
         {
           title: '前端框架及面试 变化侦测篇',
-          collapsable: false,
+          collapsable: true,
           children: [
             ['reactive/', '综述'],
             ['reactive/object', 'Object的变化侦测'],
@@ -184,7 +184,7 @@ module.exports = {
         },
         {
           title: '前端框架及面试 虚拟DOM篇',
-          collapsable: false,
+          collapsable: true,
           children: [
             ['virtualDOM/vue的虚拟DOM', 'Vue中的虚拟DOM'],
             ['virtualDOM/patch', 'Vue中的DOM-Diff'],
@@ -194,7 +194,7 @@ module.exports = {
         },
         {
           title: '前端框架及面试 模板编译篇',
-          collapsable: false,
+          collapsable: true,
           children: [
             ['complie/', '综述'],
             ['complie/parse', '模板解析阶段(整体运行流程)'],
@@ -261,12 +261,12 @@ module.exports = {
       '/100wiki/': [
         {
           title: '指南',
-          collapsable: false,
+          collapsable: true,
           children: [''],
         },
         {
           title: '分析解决问题',
-          collapsable: false,
+          collapsable: true,
           children: [
             '分析解决问题/01-数组转树',
             '分析解决问题/02-连环问-树转数组',
@@ -283,7 +283,7 @@ module.exports = {
         },
         {
           title: '编写高质量代码',
-          collapsable: false,
+          collapsable: true,
           children: [
             '编写高质量代码/01-文本小节-高质量代码的特点',
             '编写高质量代码/02-array-flatten',
@@ -303,7 +303,7 @@ module.exports = {
         },
         {
           title: '实际工作经验',
-          collapsable: false,
+          collapsable: true,
           children: [
             '实际工作经验/01-首屏优化',
             '实际工作经验/02-渲染10w条数据',
@@ -320,7 +320,7 @@ module.exports = {
         },
         {
           title: '知识广度',
-          collapsable: false,
+          collapsable: true,
           children: [
             '知识广度/01-移动端click-300ms-延迟',
             '知识广度/02-文本小节-Retina屏幕1px宽度',
@@ -337,8 +337,26 @@ module.exports = {
           ],
         },
         {
+          title: '知识深度',
+          collapsable: true,
+          children: [
+            '知识深度/01-JS内存泄漏',
+            '知识深度/02-浏览器和nodejs事件循环的区别',
+            '知识深度/04-vdom真的很快吗',
+            '知识深度/05-for-vs-forEach',
+            '知识深度/06-nodejs多进程',
+            '知识深度/07-js-bridge原理',
+            '知识深度/08-requestIdleCallback',
+            '知识深度/09-Vue生命周期',
+            '知识深度/10-vue-react-diff',
+            '知识深度/11-vue-router-模式',
+            '知识深度/12-总结',
+            '知识深度/知识深度很重要',
+          ],
+        },
+        {
           title: '数据结构和算法',
-          collapsable: false,
+          collapsable: true,
           children: [
             '数据结构和算法/01-旋转数组',
             '数据结构和算法/02-括号匹配',

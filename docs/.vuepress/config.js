@@ -2,7 +2,7 @@
 const path = require('path')
 module.exports = {
   title: '前端知识体系',
-  base: '/interview/',
+  base: '/',
   description: '前端知识体系',
   // markdown: {
   //   // markdown-it-anchor 的选项

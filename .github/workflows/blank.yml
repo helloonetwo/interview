@@ -15,4 +15,4 @@ jobs:
           TARGET_BRANCH: gh-pages
           BUILD_SCRIPT: yarn && yarn docs:build
           BUILD_DIR: docs/.vuepress/dist
-          CNAME: http://interview.onespot.website/
+          CNAME: https://system.onespot.website

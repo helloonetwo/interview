@@ -32,6 +32,7 @@ module.exports = {
     lastUpdated: '上次更新',
     nav: [
       { text: '首页', link: '/' },
+      { text: '手写源码', link: '/hand/' },
       { text: '数据可视化', link: '/guide/' },
       { text: '构建工具', link: '/webpack/' },
       { text: '基础及框架', link: '/interview/' },
@@ -41,6 +42,24 @@ module.exports = {
     navbar: true,
     sidebar: {
       collapsable: true,
+      '/hand/': [
+        {
+          title: '指南',
+          collapsable: false,
+          children: [''],
+        },
+        {
+          title: '基础阶段',
+          collapsable: false,
+          children: [
+            'base/手写ajax',
+            'base/手写event-bus',
+            'base/手写instanceof',
+            'base/手写函数bind-call-apply',
+            'base/手写深拷贝',
+          ],
+        },
+      ],
       '/webpack/': [
         {
           title: '指南',

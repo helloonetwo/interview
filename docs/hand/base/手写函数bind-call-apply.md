@@ -1,4 +1,4 @@
-# 手写函数 bind
+# 手写函数 bind，call 和 apply
 
 ## 题目
 

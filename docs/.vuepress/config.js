@@ -277,6 +277,7 @@ module.exports = {
             '前端基础知识/06-for-in和for-of的区别',
             '前端基础知识/07-offsetHeight-scrollHeight-clientHeight-区别',
             '前端基础知识/08-HTMLCollection-NodeList-区别',
+            '前端基础知识/09-vue-computed-watch-区别',
             '前端基础知识/10-vue组件通讯',
             '前端基础知识/11-vuex-action-mutation-区别',
             '前端基础知识/12-JS严格模式',

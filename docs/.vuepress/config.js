@@ -1,9 +1,9 @@
 // const nav = require('./nav')
 const path = require('path')
 module.exports = {
-  title: '面试文档',
+  title: '前端知识体系',
   base: '/interview/',
-  description: '面试学习',
+  description: '前端知识体系',
   // markdown: {
   //   // markdown-it-anchor 的选项
   //   anchor: { permalink: false },

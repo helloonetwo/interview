@@ -33,6 +33,7 @@ module.exports = {
     nav: [
       { text: '首页', link: '/' },
       { text: '手写源码', link: '/hand/' },
+      { text: '设计模式', link: '/Design/' },
       { text: '数据可视化', link: '/guide/' },
       { text: '构建工具', link: '/webpack/' },
       { text: '基础及框架', link: '/interview/' },
@@ -42,6 +43,13 @@ module.exports = {
     navbar: true,
     sidebar: {
       collapsable: true,
+      '/Design/': [
+        {
+          title: '设计模式',
+          collapsable: false,
+          children: ['', '单例模式'],
+        },
+      ],
       '/hand/': [
         {
           title: '指南',

@@ -47,7 +47,7 @@ module.exports = {
         {
           title: '设计模式',
           collapsable: false,
-          children: ['', '单例模式', '观察者模式', '发布订阅模式'],
+          children: ['', '单例模式', '观察者模式', '发布订阅模式', '代理模式'],
         },
       ],
       '/hand/': [

@@ -32,6 +32,7 @@ module.exports = {
     lastUpdated: '上次更新',
     nav: [
       { text: '首页', link: '/' },
+      { text: '排序算法', link: '/JS-Sorting-Algorithm/' },
       { text: '手写源码', link: '/hand/' },
       { text: '设计模式', link: '/Design/' },
       { text: '数据可视化', link: '/guide/' },
@@ -43,6 +44,13 @@ module.exports = {
     navbar: true,
     sidebar: {
       collapsable: true,
+      '/JS-Sorting-Algorithm/': [
+        {
+          title: '排序算法',
+          collapsable: false,
+          children: ['', '6.quickSort'],
+        },
+      ],
       '/Design/': [
         {
           title: '设计模式',
@@ -65,6 +73,8 @@ module.exports = {
             'base/手写instanceof',
             'base/手写函数bind-call-apply',
             'base/手写深拷贝',
+            'base/手写节流',
+            'base/手写防抖',
           ],
         },
       ],
@@ -426,6 +436,7 @@ module.exports = {
             '数据结构和算法/16-切换字母大小写',
             '数据结构和算法/17-小数相加',
             '数据结构和算法/18-总结',
+            '数据结构和算法/队列和栈',
             '数据结构和算法/常见数据结构',
             '数据结构和算法/常见算法时间复杂度',
           ],
@@ -469,6 +480,13 @@ module.exports = {
       {
         sidebarLinkSelector: '.sidebar-link',
         headerAnchorSelector: '.header-anchor',
+      },
+    ],
+    [
+      'vuepress-plugin-code-copy',
+      {
+        color: '#808080',
+        successText: '复制成功',
       },
     ],
     '@vuepress/nprogress',

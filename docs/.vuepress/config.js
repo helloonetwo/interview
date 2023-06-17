@@ -12,7 +12,7 @@ module.exports = {
   //   lineNumbers: true,
   // },
   head: [
-    ['link', { rel: 'icon', href: `logo.jpg` }],
+    ['link', { rel: 'icon', href: `logo.png` }],
     ['meta', { name: 'theme-color', content: '#1890ff' }],
     ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
     [
@@ -36,6 +36,8 @@ module.exports = {
       { text: '手写源码', link: '/hand/' },
       { text: '设计模式', link: '/Design/' },
       { text: '数据可视化', link: '/guide/' },
+      { text: '构建工具', link: '/webpack/' },
+      { text: '性能优化', link: '/Optimization/' },
       { text: 'js基础及框架', link: '/interview/' },
       { text: '面试100问', link: '/100wiki/' },
       // { text: '购买课程', link: 'https://coding.imooc.com/class/445.html' },
@@ -48,6 +50,28 @@ module.exports = {
           title: '排序算法',
           collapsable: false,
           children: ['', '6.quickSort'],
+        },
+      ],
+      '/Optimization/': [
+        {
+          title: '指南',
+          collapsable: false,
+          children: [''],
+        },
+        {
+          title: '网络篇',
+          collapsable: false,
+          children: ['网络篇/webpack 性能调优'],
+        },
+        {
+          title: '存储篇',
+          collapsable: false,
+          children: ['存储篇/HTTP 缓存'],
+        },
+        {
+          title: '渲染篇',
+          collapsable: false,
+          children: ['渲染篇/渲染优化'],
         },
       ],
       '/Design/': [
@@ -281,6 +305,12 @@ module.exports = {
               '请说一下Vue2及Vue3响应式数据的理解',
             ],
             ['vue面试演练/谈谈你对MVVM的理解', '谈谈你对MVVM的理解'],
+            ['vue面试演练/Vue.mixin的使用场景和原理', 'Vue中如何进行依赖收集'],
+            ['vue面试演练/Vue中如何进行依赖收集', 'Vue.mixin的使用场景和原理'],
+            [
+              'vue面试演练/如何理解Vue中模板编译原理',
+              '如何理解Vue中模板编译原理',
+            ],
           ],
         },
       ],

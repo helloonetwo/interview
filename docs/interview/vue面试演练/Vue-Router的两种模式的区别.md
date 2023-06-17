@@ -6,4 +6,4 @@ Vue-Router 有三种模式 hash、history、abstract
 
 
 
-![细说前端路由的hash模式和 history模式](https://juejin.cn/post/6993897542970769421)
+ [Vue-Router的两种模式](https://juejin.cn/post/6993897542970769421)

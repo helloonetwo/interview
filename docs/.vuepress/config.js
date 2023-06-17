@@ -243,6 +243,46 @@ module.exports = {
             ['complie/个人总结', '个人总结'],
           ],
         },
+        {
+          title: '前端框架及面试 vue面试演练',
+          collapsable: true,
+          children: [
+            ['vue面试演练/computed和watch区别', 'computed和watch区别'],
+            [
+              'vue面试演练/keep-alive平时在哪里使用',
+              'keep-alive平时在哪里使用',
+            ],
+            ['vue面试演练/mutation和action的区别', 'mutation和action的区别'],
+            [
+              'vue面试演练/nextTick在哪里使用？原理是 ',
+              'nextTick在哪里使用？原理是 ',
+            ],
+            ['vue面试演练/v-for为什么要加key', 'v-for为什么要加key'],
+            ['vue面试演练/v-if和v-show的区别', 'v-if和v-show的区别'],
+            ['vue面试演练/v-model原理', 'vue面试演练/v-model原理'],
+            [
+              'vue面试演练/Vue-Router的两种模式的区别',
+              'Vue-Router的两种模式的区别',
+            ],
+            ['vue面试演练/Vue中diff算法原理', 'Vue中diff算法原理'],
+            ['vue面试演练/Vue中的性能优化有哪些', 'Vue中的性能优化有哪些'],
+            ['vue面试演练/Vue为什么需要虚拟DOM', 'Vue为什么需要虚拟DOM'],
+            [
+              'vue面试演练/Vue的生命周期方法有哪些？一般在哪一步发送请求及原因',
+              'Vue的生命周期方法有哪些？一般在哪一步发送请求及原因',
+            ],
+            [
+              'vue面试演练/Vue组件data为什么必须是个函数',
+              'Vue组件data为什么必须是个函数',
+            ],
+            ['vue面试演练/常见组件通信方式', '常见组件通信方式'],
+            [
+              'vue面试演练/请说一下Vue2及Vue3响应式数据的理解',
+              '请说一下Vue2及Vue3响应式数据的理解',
+            ],
+            ['vue面试演练/谈谈你对MVVM的理解', '谈谈你对MVVM的理解'],
+          ],
+        },
       ],
       '/guide/': [
         {

@@ -1,16 +1,8 @@
-// const nav = require('./nav')
 const path = require('path')
 module.exports = {
   title: '前端知识体系',
   base: '/',
   description: '前端知识体系',
-  // markdown: {
-  //   // markdown-it-anchor 的选项
-  //   anchor: { permalink: false },
-  //   // markdown-it-toc 的选项
-  //   toc: { includeLevel: [1, 2, 3] },
-  //   lineNumbers: true,
-  // },
   head: [
     ['link', { rel: 'icon', href: `logo.png` }],
     ['meta', { name: 'theme-color', content: '#1890ff' }],
@@ -40,7 +32,6 @@ module.exports = {
       { text: '性能优化', link: '/Optimization/' },
       { text: 'js基础及框架', link: '/interview/' },
       { text: '面试100问', link: '/100wiki/' },
-      // { text: '购买课程', link: 'https://coding.imooc.com/class/445.html' },
     ],
     navbar: true,
     sidebar: {

@@ -146,6 +146,9 @@ module.exports = {
             '高效准备前端技术一面/安全防范知识点',
             '高效准备前端技术一面/性能优化',
             '高效准备前端技术一面/内存泄漏',
+            '高效准备前端技术一面/single_sign',
+            '高效准备前端技术一面/pull_up_loading_pull_down_refresh',
+            '高效准备前端技术一面/visible',
           ],
         },
         {

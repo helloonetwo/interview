@@ -168,10 +168,11 @@ export const useRem = () => {
 
 
 触发BFC：
-浮动元素：float 值为 left 、right
-overflow 值不为 visible，即为 auto、scroll、hidden
-display 值为 inline-block、table-cell、table-caption、table、inline-table、flex、inline-flex、grid、inline-grid
-绝对定位元素：position 值为 absolute、fixed
+浮动元素：
+- float 值为 left 、right
+- overflow 值不为 visible，即为 auto、scroll、hidden
+- display 值为 inline-block、table-cell、table-caption、table、inline-table、flex、inline-flex、grid、inline-grid
+- 绝对定位元素：position 值为 absolute、fixed
 
 特性：
 BFC 是页面上的一个独立容器，容器里面的子元素不会影响外面的元素。
@@ -181,7 +182,7 @@ BFC 内部的块级盒会在垂直方向上一个接一个排列
 浮动盒的区域不会和 BFC 重叠
 计算 BFC 的高度时，浮动元素也会参与计算
 
-应用场景
+#### 应用场景
 - 解决margin叠加问题
 当盒子上下排布，上方盒子margin-bottom:100px;下面的盒子margin-top:100px;那么神奇的事情就发生了，两个盒子按照叠加来算的话，距离应该是200px，但是我们发现实际上两个margin值进行了叠加，只剩下100px。
 代码：

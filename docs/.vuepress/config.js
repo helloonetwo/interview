@@ -29,6 +29,7 @@ module.exports = {
       { text: '设计模式', link: '/Design/' },
       { text: '数据可视化', link: '/guide/' },
       { text: '构建工具', link: '/webpack/' },
+      // { text: '部署', link: '/docker/' },
       { text: '性能优化', link: '/Optimization/' },
       { text: 'js基础及框架', link: '/interview/' },
       { text: '面试100问', link: '/100wiki/' },
@@ -43,6 +44,18 @@ module.exports = {
           children: ['', '6.quickSort'],
         },
       ],
+      // '/docker/': [
+      //   {
+      //     title: '自动化',
+      //     collapsable: false,
+      //     children: [
+      //       '',
+      //       'window安装docker',
+      //       'docker images',
+      //       'Docker-compose教程',
+      //     ],
+      //   },
+      // ],
       '/Optimization/': [
         {
           title: '指南',
@@ -89,6 +102,7 @@ module.exports = {
             'base/手写深拷贝',
             'base/手写节流',
             'base/手写防抖',
+            'base/手写柯里化函数',
           ],
         },
       ],
@@ -139,6 +153,11 @@ module.exports = {
             '高效准备前端技术一面/css',
             '高效准备前端技术一面/js-基础知识',
             '高效准备前端技术一面/js-异步进阶',
+            '高效准备前端技术一面/functional_programming',
+            '高效准备前端技术一面/BOM',
+            '高效准备前端技术一面/Dom',
+            '高效准备前端技术一面/function_cache',
+            '高效准备前端技术一面/memory_leak',
             '高效准备前端技术一面/http',
             '高效准备前端技术一面/JS-Web-API-Ajax',
             '高效准备前端技术一面/JS-WEB-API-存储',

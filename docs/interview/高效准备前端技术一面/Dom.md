@@ -1,4 +1,4 @@
-# DOM常见的操作
+# DOM
 
  ![](https://static.vue-js.com/a89c99a0-7fdc-11eb-ab90-d9ae814b240d.png)
 

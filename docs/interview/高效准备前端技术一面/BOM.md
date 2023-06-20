@@ -1,4 +1,4 @@
-# BOM的理解
+# BOM
 
  ![](https://static.vue-js.com/3e191c40-8089-11eb-85f6-6fac77c0c9b3.png)
 

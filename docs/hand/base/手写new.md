@@ -50,6 +50,7 @@ export function customNew<T>(constructor: Function, ...args: any[]): T {
     constructor.apply(obj, args);
     // 3. 返回 obj
     return obj;
+
 }
 
 class Foo {

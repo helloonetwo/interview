@@ -29,9 +29,7 @@ module.exports = {
       { text: '设计模式', link: '/Design/' },
       { text: '数据可视化', link: '/guide/' },
       { text: '构建工具', link: '/webpack/' },
-      // { text: '部署', link: '/docker/' },
-      { text: '性能优化', link: '/Optimization/' },
-      { text: 'js基础及框架', link: '/interview/' },
+      { text: '基础及框架', link: '/interview/' },
       { text: '面试100问', link: '/100wiki/' },
     ],
     navbar: true,
@@ -42,40 +40,6 @@ module.exports = {
           title: '排序算法',
           collapsable: false,
           children: ['', '6.quickSort'],
-        },
-      ],
-      // '/docker/': [
-      //   {
-      //     title: '自动化',
-      //     collapsable: false,
-      //     children: [
-      //       '',
-      //       'window安装docker',
-      //       'docker images',
-      //       'Docker-compose教程',
-      //     ],
-      //   },
-      // ],
-      '/Optimization/': [
-        {
-          title: '指南',
-          collapsable: false,
-          children: [''],
-        },
-        {
-          title: '网络篇',
-          collapsable: false,
-          children: ['网络篇/webpack 性能调优'],
-        },
-        {
-          title: '存储篇',
-          collapsable: false,
-          children: ['存储篇/HTTP 缓存'],
-        },
-        {
-          title: '渲染篇',
-          collapsable: false,
-          children: ['渲染篇/渲染优化'],
         },
       ],
       '/Design/': [
@@ -159,7 +123,10 @@ module.exports = {
             '高效准备前端技术一面/html',
             '高效准备前端技术一面/css',
             '高效准备前端技术一面/js-基础知识',
+            '高效准备前端技术一面/类型转换',
             '高效准备前端技术一面/js-异步进阶',
+            '高效准备前端技术一面/context_stack',
+            '高效准备前端技术一面/inherit',
             '高效准备前端技术一面/functional_programming',
             '高效准备前端技术一面/BOM',
             '高效准备前端技术一面/Dom',
@@ -175,6 +142,7 @@ module.exports = {
             '高效准备前端技术一面/single_sign',
             '高效准备前端技术一面/pull_up_loading_pull_down_refresh',
             '高效准备前端技术一面/visible',
+            '高效准备前端技术一面/浏览器从加载页面到渲染页面的过程',
           ],
         },
         {
@@ -331,6 +299,15 @@ module.exports = {
               'vue面试演练/如何理解Vue中模板编译原理',
               '如何理解Vue中模板编译原理',
             ],
+          ],
+        },
+        {
+          title: '前端性能优化',
+          collapsable: true,
+          children: [
+            'Optimization/webpack 性能调优',
+            'Optimization/HTTP 缓存',
+            'Optimization/渲染优化',
           ],
         },
       ],

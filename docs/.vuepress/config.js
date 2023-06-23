@@ -74,6 +74,7 @@ module.exports = {
             'base/手写节流',
             'base/手写防抖',
             'base/手写柯里化函数',
+            'base/手写数组扁平化',
           ],
         },
       ],

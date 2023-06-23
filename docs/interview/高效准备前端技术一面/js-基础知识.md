@@ -644,7 +644,6 @@ Object的原型对象也有__proto__属性指向null，null是原型链的顶端
 
 Object.prototype.__proto__ === null
 下面作出总结：
-
 - 一切对象都是继承自Object对象，Object 对象直接继承根源对象null
 
 - 一切的函数对象（包括 Object 对象），都是继承自 Function 对象
@@ -653,6 +652,35 @@ Object.prototype.__proto__ === null
 
 - Function对象的__proto__会指向自己的原型对象，最终还是继承自Object对象
 
+
+### 实例演示：
+![](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d9afcd1172d340508d25c095b1103fac~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp?)
+```js
+function Person(name) {
+  this.name = name
+  this.age = 18
+  this.sayName = function () {
+    console.log(this.name)
+  }
+}
+// 第二步 创建实例
+var person = new Person('person')
+
+// 实例（即person）的__proto__和原型对象指向同一个地方**
+// 原型对象（即Person.prototype）的constructor指向构造函数本身**
+console.log(person.__proto__ == Person.prototype)
+console.log(Person.prototype.constructor == Person)
+var obj = new Object()
+console.log(obj.__proto__ == Object.prototype)
+
+// 除了Object的原型对象（Object.prototype）的__proto__指向null，其他内置函数对象的原型对象（例如：Array.prototype）和自定义构造函数的__proto__都指向Object.prototype, 因为原型对象本身是普通对象。
+console.log(Object.prototype.__proto__ == null)
+console.log(Person.__proto__ == Function.prototype)
+console.log(Function.prototype.__proto__ == Object.prototype)
+//  Object 对象直接继承自 Function 对象
+console.log(Object.__proto__ == Function.prototype)
+
+```
 
 ## 防抖与节流
 ### 定义

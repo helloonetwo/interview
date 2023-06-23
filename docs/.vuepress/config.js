@@ -128,6 +128,7 @@ module.exports = {
             '高效准备前端技术一面/context_stack',
             '高效准备前端技术一面/inherit',
             '高效准备前端技术一面/functional_programming',
+            '高效准备前端技术一面/argument',
             '高效准备前端技术一面/BOM',
             '高效准备前端技术一面/Dom',
             '高效准备前端技术一面/JS-Web-API-Ajax',

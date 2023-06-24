@@ -75,6 +75,8 @@ module.exports = {
             'base/手写防抖',
             'base/手写柯里化函数',
             'base/手写数组扁平化',
+            'base/手写compose',
+            'base/手写pipe函数',
           ],
         },
       ],
@@ -145,6 +147,7 @@ module.exports = {
             '高效准备前端技术一面/pull_up_loading_pull_down_refresh',
             '高效准备前端技术一面/visible',
             '高效准备前端技术一面/浏览器从加载页面到渲染页面的过程',
+            '高效准备前端技术一面/计算机网络',
           ],
         },
         {

@@ -79,6 +79,11 @@ module.exports = {
             'base/手写pipe函数',
           ],
         },
+        {
+          title: '进阶阶段',
+          collapsable: false,
+          children: ['advanced/plugin'],
+        },
       ],
       '/webpack/': [
         {
@@ -110,6 +115,24 @@ module.exports = {
             'optimization/性能优化-构建速度',
             'optimization/性能优化-产出代码',
             'optimization/前端为什么要打包和构建',
+          ],
+        },
+        {
+          title: 'webpack5.x知识体系',
+          collapsable: false,
+          children: [
+            'webpack5.x知识体系/指南',
+            'webpack5.x知识体系/简单配置',
+            'webpack5.x知识体系/SourceMap 配置选择',
+            'webpack5.x知识体系/三种 hash 值',
+            'webpack5.x知识体系/优化构建速度',
+            'webpack5.x知识体系/优化构建结果',
+            'webpack5.x知识体系/优化运行时体验',
+            'webpack5.x知识体系/Loader',
+            'webpack5.x知识体系/优化构建结果',
+            'webpack5.x知识体系/Plugin',
+            'webpack5.x知识体系/Loader_Plugin',
+            'webpack5.x知识体系/build_process',
           ],
         },
       ],

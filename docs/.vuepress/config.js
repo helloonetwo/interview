@@ -133,6 +133,7 @@ module.exports = {
             'webpack5.x知识体系/Plugin',
             'webpack5.x知识体系/Loader_Plugin',
             'webpack5.x知识体系/build_process',
+            'webpack5.x知识体系/HMR',
           ],
         },
       ],

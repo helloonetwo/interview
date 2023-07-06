@@ -82,7 +82,11 @@ module.exports = {
         {
           title: '进阶阶段',
           collapsable: false,
-          children: ['advanced/plugin'],
+          children: [
+            'advanced/plugin',
+            'advanced/封装Mylocalstorage',
+            'advanced/运用TS手写Promise源码',
+          ],
         },
       ],
       '/webpack/': [

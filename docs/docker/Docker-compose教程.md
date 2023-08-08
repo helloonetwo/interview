@@ -10,3 +10,14 @@
 ```
 docker-compose --version
 ```
+
+![](./images/Snipaste_2023-07-07_20-51-31.png)
+
+1. 构建容器
+  docker-compose build  editor-server
+2. 启动所有服务
+   docker-compose   up  -d 
+3. 停止所有服务
+   docker-compose down
+4. 查看服务
+   docker-compose ps

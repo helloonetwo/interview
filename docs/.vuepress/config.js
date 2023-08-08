@@ -39,7 +39,19 @@ module.exports = {
         {
           title: '排序算法',
           collapsable: false,
-          children: ['', '6.quickSort'],
+          children: [
+            '',
+            '1.bubbleSort',
+            '2.selectionSort',
+            '3.insertionSort',
+            '4.shellSort',
+            '5.mergeSort',
+            '6.quickSort',
+            '7.heapSort',
+            '8.countingSort',
+            '9.bucketSort',
+            '10.radixSort',
+          ],
         },
       ],
       '/Design/': [

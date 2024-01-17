@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>观察者模式（Observer） | 日常记录</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    <link rel="icon" href="logo.png">
+    <meta name="description" content="日常记录">
+    <meta name="theme-color" content="#1890ff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-TileColor" content="#000000">
+    
+    <link rel="preload" href="/assets/css/0.styles.51cb94b8.css" as="style"><link rel="preload" href="/assets/js/app.ee7ac0cf.js" as="script"><link rel="preload" href="/assets/js/2.b5224fff.js" as="script"><link rel="preload" href="/assets/js/1.d911aed5.js" as="script"><link rel="preload" href="/assets/js/28.3f17d152.js" as="script"><link rel="prefetch" href="/assets/js/10.f455b8ab.js"><link rel="prefetch" href="/assets/js/11.7fe21666.js"><link rel="prefetch" href="/assets/js/12.66bdaaea.js"><link rel="prefetch" href="/assets/js/13.6b4bf4b3.js"><link rel="prefetch" href="/assets/js/14.9c5e1bb4.js"><link rel="prefetch" href="/assets/js/15.91c22ce4.js"><link rel="prefetch" href="/assets/js/16.add1717f.js"><link rel="prefetch" href="/assets/js/17.e771a4a6.js"><link rel="prefetch" href="/assets/js/18.7dff4b06.js"><link rel="prefetch" href="/assets/js/19.a12606a5.js"><link rel="prefetch" href="/assets/js/20.28686cf9.js"><link rel="prefetch" href="/assets/js/21.a8ae99b3.js"><link rel="prefetch" href="/assets/js/22.ede061c2.js"><link rel="prefetch" href="/assets/js/23.3f602029.js"><link rel="prefetch" href="/assets/js/24.3b64fc4f.js"><link rel="prefetch" href="/assets/js/25.0c871f78.js"><link rel="prefetch" href="/assets/js/26.1899083c.js"><link rel="prefetch" href="/assets/js/27.1c3c8889.js"><link rel="prefetch" href="/assets/js/29.e52c7f9e.js"><link rel="prefetch" href="/assets/js/3.bac4d434.js"><link rel="prefetch" href="/assets/js/4.7fa5c39e.js"><link rel="prefetch" href="/assets/js/5.edf12070.js"><link rel="prefetch" href="/assets/js/6.915a5fe6.js"><link rel="prefetch" href="/assets/js/7.b00dfbf7.js"><link rel="prefetch" href="/assets/js/vendors~docsearch.19933dad.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.51cb94b8.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">日常记录</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/Design/" class="nav-link router-link-active">
+  设计模式
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/Design/" class="nav-link router-link-active">
+  设计模式
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>设计模式</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/Design/工厂模式.html" class="sidebar-link">工厂模式</a></li><li><a href="/Design/单例模式.html" class="sidebar-link">单例模式</a></li><li><a href="/Design/观察者模式.html" class="active sidebar-link">观察者模式（Observer）</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/Design/观察者模式.html#定义" class="sidebar-link">定义</a></li><li class="sidebar-sub-header"><a href="/Design/观察者模式.html#模式特征" class="sidebar-link">模式特征</a></li><li class="sidebar-sub-header"><a href="/Design/观察者模式.html#代码实现" class="sidebar-link">代码实现</a></li><li class="sidebar-sub-header"><a href="/Design/观察者模式.html#实践" class="sidebar-link">实践</a></li></ul></li><li><a href="/Design/发布订阅模式.html" class="sidebar-link">发布订阅模式</a></li><li><a href="/Design/策略模式.html" class="sidebar-link">策略模式</a></li><li><a href="/Design/代理模式.html" class="sidebar-link">代理模式</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="观察者模式-observer"><a href="#观察者模式-observer" class="header-anchor">#</a> 观察者模式（Observer）</h1> <h2 id="定义"><a href="#定义" class="header-anchor">#</a> 定义</h2> <blockquote><p>观察者模式定义了一种一对多的依赖关系，让多个观察者对象同时监听某一个目标对象，当这个目标对象的状态发生变化时，会通知所有观察者对象，使它们能够自动更新。 —— Graphic Design Patterns.</p></blockquote> <p><img src="https://img.imyangyong.com/blog/2019-12-23%2009-35-49.png" alt=""></p> <h2 id="模式特征"><a href="#模式特征" class="header-anchor">#</a> 模式特征</h2> <p>一个目标者对象 Subject，拥有方法：添加 / 删除 / 通知 Observer；
+多个观察者对象 Observer，拥有方法：接收 Subject 状态变更通知并处理；
+目标对象 Subject 状态变更时，通知所有 Observer。
+Subject 添加一系列 Observer， Subject 负责维护与这些 Observer 之间的联系，“你对我有兴趣，我更新就会通知你”。
+<img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/644cd4fde1594582ae86103d3543d06e~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp" alt=""></p> <h2 id="代码实现"><a href="#代码实现" class="header-anchor">#</a> 代码实现</h2> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// 目标者类</span>
+<span class="token keyword">class</span> <span class="token class-name">Subject</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>observers <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>  <span class="token comment">// 观察者列表</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 添加</span>
+  <span class="token function">add</span><span class="token punctuation">(</span><span class="token parameter">observer</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>observers<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>observer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 删除</span>
+  <span class="token function">remove</span><span class="token punctuation">(</span><span class="token parameter">observer</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> idx <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>observers<span class="token punctuation">.</span><span class="token function">findIndex</span><span class="token punctuation">(</span><span class="token parameter">item</span> <span class="token operator">=&gt;</span> item <span class="token operator">===</span> observer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    idx <span class="token operator">&gt;</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">&amp;&amp;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>observers<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span>idx<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 通知</span>
+  <span class="token function">notify</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> observer <span class="token keyword">of</span> <span class="token keyword">this</span><span class="token punctuation">.</span>observers<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      observer<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 观察者类</span>
+<span class="token keyword">class</span> <span class="token class-name">Observer</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 目标对象更新时触发的回调</span>
+  <span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">目标者通知我更新了，我是：</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 实例化目标者</span>
+<span class="token keyword">let</span> subject <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Subject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 实例化两个观察者</span>
+<span class="token keyword">let</span> obs1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Observer</span><span class="token punctuation">(</span><span class="token string">'前端开发者'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> obs2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Observer</span><span class="token punctuation">(</span><span class="token string">'后端开发者'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 向目标者添加观察者</span>
+subject<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>obs1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+subject<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>obs2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 目标者通知更新</span>
+subject<span class="token punctuation">.</span><span class="token function">notify</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+<span class="token comment">// 输出：</span>
+<span class="token comment">// 目标者通知我更新了，我是前端开发者</span>
+<span class="token comment">// 目标者通知我更新了，我是后端开发者</span>
+</code></pre></div><h2 id="实践"><a href="#实践" class="header-anchor">#</a> 实践</h2> <p>比如我们给按钮绑定click监听事件，其本质就是观察者模式的一种应用：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// 一个主题，一个观察者，主题变化之后触发观察者执行</span>
+btn<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><p>这里的btn可以看作是我们的目标对象（被观察对象），当它被点击时，也就是它的状态发生了变化，那么它就会通知内部添加的观察者对象，也就是我们通过addEventListener函数添加的两个匿名函数。</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/Design/单例模式.html" class="prev">
+        单例模式
+      </a></span> <span class="next"><a href="/Design/发布订阅模式.html">
+        发布订阅模式
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/assets/js/app.ee7ac0cf.js" defer></script><script src="/assets/js/2.b5224fff.js" defer></script><script src="/assets/js/1.d911aed5.js" defer></script><script src="/assets/js/28.3f17d152.js" defer></script>
+  </body>
+</html>

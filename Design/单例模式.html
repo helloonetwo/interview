@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>单例模式 | 日常记录</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    <link rel="icon" href="logo.png">
+    <meta name="description" content="日常记录">
+    <meta name="theme-color" content="#1890ff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-TileColor" content="#000000">
+    
+    <link rel="preload" href="/assets/css/0.styles.51cb94b8.css" as="style"><link rel="preload" href="/assets/js/app.ee7ac0cf.js" as="script"><link rel="preload" href="/assets/js/2.b5224fff.js" as="script"><link rel="preload" href="/assets/js/1.d911aed5.js" as="script"><link rel="preload" href="/assets/js/24.3b64fc4f.js" as="script"><link rel="prefetch" href="/assets/js/10.f455b8ab.js"><link rel="prefetch" href="/assets/js/11.7fe21666.js"><link rel="prefetch" href="/assets/js/12.66bdaaea.js"><link rel="prefetch" href="/assets/js/13.6b4bf4b3.js"><link rel="prefetch" href="/assets/js/14.9c5e1bb4.js"><link rel="prefetch" href="/assets/js/15.91c22ce4.js"><link rel="prefetch" href="/assets/js/16.add1717f.js"><link rel="prefetch" href="/assets/js/17.e771a4a6.js"><link rel="prefetch" href="/assets/js/18.7dff4b06.js"><link rel="prefetch" href="/assets/js/19.a12606a5.js"><link rel="prefetch" href="/assets/js/20.28686cf9.js"><link rel="prefetch" href="/assets/js/21.a8ae99b3.js"><link rel="prefetch" href="/assets/js/22.ede061c2.js"><link rel="prefetch" href="/assets/js/23.3f602029.js"><link rel="prefetch" href="/assets/js/25.0c871f78.js"><link rel="prefetch" href="/assets/js/26.1899083c.js"><link rel="prefetch" href="/assets/js/27.1c3c8889.js"><link rel="prefetch" href="/assets/js/28.3f17d152.js"><link rel="prefetch" href="/assets/js/29.e52c7f9e.js"><link rel="prefetch" href="/assets/js/3.bac4d434.js"><link rel="prefetch" href="/assets/js/4.7fa5c39e.js"><link rel="prefetch" href="/assets/js/5.edf12070.js"><link rel="prefetch" href="/assets/js/6.915a5fe6.js"><link rel="prefetch" href="/assets/js/7.b00dfbf7.js"><link rel="prefetch" href="/assets/js/vendors~docsearch.19933dad.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.51cb94b8.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">日常记录</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/Design/" class="nav-link router-link-active">
+  设计模式
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/Design/" class="nav-link router-link-active">
+  设计模式
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>设计模式</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/Design/工厂模式.html" class="sidebar-link">工厂模式</a></li><li><a href="/Design/单例模式.html" class="active sidebar-link">单例模式</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/Design/单例模式.html#定义" class="sidebar-link">定义</a></li><li class="sidebar-sub-header"><a href="/Design/单例模式.html#单例模式的实现思路" class="sidebar-link">单例模式的实现思路</a></li><li class="sidebar-sub-header"><a href="/Design/单例模式.html#生产实践-vuex中的单例模式" class="sidebar-link">生产实践：Vuex中的单例模式</a></li><li class="sidebar-sub-header"><a href="/Design/单例模式.html#面试实践" class="sidebar-link">面试实践</a></li></ul></li><li><a href="/Design/观察者模式.html" class="sidebar-link">观察者模式（Observer）</a></li><li><a href="/Design/发布订阅模式.html" class="sidebar-link">发布订阅模式</a></li><li><a href="/Design/策略模式.html" class="sidebar-link">策略模式</a></li><li><a href="/Design/代理模式.html" class="sidebar-link">代理模式</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="单例模式"><a href="#单例模式" class="header-anchor">#</a> 单例模式</h1> <h2 id="定义"><a href="#定义" class="header-anchor">#</a> 定义</h2> <p>保证一个类仅有一个实例，并提供一个访问它的全局访问点，这样的模式就叫做单例模式。</p> <h2 id="单例模式的实现思路"><a href="#单例模式的实现思路" class="header-anchor">#</a> 单例模式的实现思路</h2> <p>不管我们尝试去创建多少次，它都只给你返回第一次所创建的那唯一的一个实例。</p> <ul><li>构造函数</li></ul> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">class</span> <span class="token class-name">SingleDog</span> <span class="token punctuation">{</span>
+    <span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'我是一个单例对象'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">static</span> <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 判断是否已经new过1个实例</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>SingleDog<span class="token punctuation">.</span>instance<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// 若这个唯一的实例不存在，那么先创建它</span>
+            SingleDog<span class="token punctuation">.</span>instance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SingleDog</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment">// 如果这个唯一的实例已经存在，则直接返回</span>
+        <span class="token keyword">return</span> SingleDog<span class="token punctuation">.</span>instance
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> s1 <span class="token operator">=</span> SingleDog<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> s2 <span class="token operator">=</span> SingleDog<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment">// true</span>
+s1 <span class="token operator">===</span> s2
+
+</code></pre></div><ul><li>闭包方式</li></ul> <div class="language-js extra-class"><pre class="language-js"><code>SingleDog<span class="token punctuation">.</span>getInstance <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 定义自由变量instance，模拟私有变量</span>
+    <span class="token keyword">let</span> instance <span class="token operator">=</span> <span class="token keyword">null</span>
+    <span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 判断自由变量是否为null</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>instance<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// 如果为null则new出唯一实例</span>
+            instance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SingleDog</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> instance
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre></div><h2 id="生产实践-vuex中的单例模式"><a href="#生产实践-vuex中的单例模式" class="header-anchor">#</a> 生产实践：Vuex中的单例模式</h2> <p>Vuex 的设计遵循了单例模式的思想，通过 install() 函数拦截 Vue.use(Vuex)的多次调用，确保了在同一个 Vue 应用中只会安装唯一一个 Vuex 实例；通过 vuexInit() 函数，确保了同一个 Vue 应用只会挂载唯一一个 Store。
+这种设计使得在整个 Vue 应用中，所有组件都能方便地访问同一个 Store 实例。这有助于在整个应用范围内维护一致的状态管理，降低了程序的复杂性。
+尽管 Vuex 并不是严格意义上的单例模式，但它却很大程度上从单例模式的思想中受益，也为我们在实践中应用单例模式提供了全新的思路。</p> <h2 id="面试实践"><a href="#面试实践" class="header-anchor">#</a> 面试实践</h2> <h3 id="实现一个全局的模态框"><a href="#实现一个全局的模态框" class="header-anchor">#</a> 实现一个全局的模态框</h3> <div class="language-html extra-class"><pre class="language-html"><code><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>en<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>UTF-8<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>单例模式弹框<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">&gt;</span></span><span class="token style"><span class="token language-css">
+    <span class="token selector">#modal</span> <span class="token punctuation">{</span>
+        <span class="token property">height</span><span class="token punctuation">:</span> 200px<span class="token punctuation">;</span>
+        <span class="token property">width</span><span class="token punctuation">:</span> 200px<span class="token punctuation">;</span>
+        <span class="token property">line-height</span><span class="token punctuation">:</span> 200px<span class="token punctuation">;</span>
+        <span class="token property">position</span><span class="token punctuation">:</span> fixed<span class="token punctuation">;</span>
+        <span class="token property">left</span><span class="token punctuation">:</span> 50%<span class="token punctuation">;</span>
+        <span class="token property">top</span><span class="token punctuation">:</span> 50%<span class="token punctuation">;</span>
+        <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">translate</span><span class="token punctuation">(</span>-50%<span class="token punctuation">,</span> -50%<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token property">border</span><span class="token punctuation">:</span> 1px solid black<span class="token punctuation">;</span>
+        <span class="token property">text-align</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">'</span>open<span class="token punctuation">'</span></span><span class="token punctuation">&gt;</span></span>打开弹框<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">'</span>close<span class="token punctuation">'</span></span><span class="token punctuation">&gt;</span></span>关闭弹框<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+    <span class="token comment">// 核心逻辑，这里采用了闭包思路来实现单例模式</span>
+    <span class="token keyword">const</span> Modal <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    	<span class="token keyword">let</span> modal <span class="token operator">=</span> <span class="token keyword">null</span>
+    	<span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>modal<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            	modal <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span>
+            	modal<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">'我是一个全局唯一的Modal'</span>
+            	modal<span class="token punctuation">.</span>id <span class="token operator">=</span> <span class="token string">'modal'</span>
+            	modal<span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> <span class="token string">'none'</span>
+            	document<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>modal<span class="token punctuation">)</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">return</span> modal
+    	<span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    
+    <span class="token comment">// 点击打开按钮展示模态框</span>
+    document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'open'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 未点击则不创建modal实例，避免不必要的内存占用;此处不用 new Modal 的形式调用也可以，和 Storage 同理</span>
+    	<span class="token keyword">const</span> modal <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Modal</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    	modal<span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> <span class="token string">'block'</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    
+    <span class="token comment">// 点击关闭按钮隐藏模态框</span>
+    document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'close'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    	<span class="token keyword">const</span> modal <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Modal</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    	<span class="token keyword">if</span><span class="token punctuation">(</span>modal<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    	    modal<span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> <span class="token string">'none'</span>
+    	<span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>
+
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/Design/工厂模式.html" class="prev">
+        工厂模式
+      </a></span> <span class="next"><a href="/Design/观察者模式.html">
+        观察者模式（Observer）
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/assets/js/app.ee7ac0cf.js" defer></script><script src="/assets/js/2.b5224fff.js" defer></script><script src="/assets/js/1.d911aed5.js" defer></script><script src="/assets/js/24.3b64fc4f.js" defer></script>
+  </body>
+</html>
